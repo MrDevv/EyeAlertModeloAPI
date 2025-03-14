@@ -39,7 +39,7 @@ pip install numpy
 pip install seaborn
 pip install matplotlib
 pip install plotly
-pip install sklearn
+pip install scikit-learn
 pip install xgboost
 ```
 
