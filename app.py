@@ -2,6 +2,7 @@ import pickle
 import os
 import pandas as pd
 import numpy as np
+import time
 from flask import Flask, jsonify, request
 
 
@@ -35,7 +36,11 @@ def addEvaluationUser():
 
     print(params)
 
+    start_time = time.time()
     result_evaluation_model = model_training.predict(params)
+    end_time = time.time()
+
+    prediction_time = round((end_time - start_time) * 1000, 2)
 
 
     if(result_evaluation_model[0] == 0):
@@ -44,7 +49,12 @@ def addEvaluationUser():
         mensaje = "alto riesgo"
 
     print("resultado del modelo: ", result_evaluation_model[0])
-    return jsonify({'result_evaluation:':str(result_evaluation_model), "message:": mensaje})
+    print("Tiempo de predicción:", prediction_time, "ms")
+    return jsonify({
+            'result_evaluation:':str(result_evaluation_model), 
+            "message:": mensaje,
+            'prediction_time_ms': prediction_time 
+            })
 
 
 if __name__=='__main__':
