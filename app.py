@@ -4,6 +4,7 @@ import pandas as pd
 import numpy as np
 import time
 from flask import Flask, jsonify, request
+from flask_cors import CORS
 
 
 model_ml_glaucoma = r'D:/EyeAlertModeloAPI/glaucoma_model.pkl'
@@ -13,7 +14,7 @@ with open(model_ml_glaucoma, 'rb') as file:
 
 
 app = Flask(__name__)
-
+CORS(app)
 
 @app.route('/')
 def ping():
@@ -51,8 +52,9 @@ def addEvaluationUser():
     print("resultado del modelo: ", result_evaluation_model[0])
     print("Tiempo de predicción:", prediction_time, "ms")
     return jsonify({
-            'result_evaluation:':str(result_evaluation_model), 
-            "message:": mensaje,
+            'status': 200,
+            'result_evaluation':str(result_evaluation_model[0]), 
+            "message": mensaje,
             'prediction_time_ms': prediction_time 
             })
 

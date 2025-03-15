@@ -46,8 +46,11 @@ pip install xgboost
 ## Librerías para la API REST del modelo predictivo
 
 ```
+pip install pandas
+pip install numpy
 pip install pickle
 pip install flask
+pip install flask_cors
 ```
 
 ## Levantamos el servidor 
