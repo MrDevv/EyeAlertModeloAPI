@@ -7,7 +7,9 @@ from flask import Flask, jsonify, request
 from flask_cors import CORS
 
 
-model_ml_glaucoma = r'D:/EyeAlertModeloAPI/glaucoma_model.pkl'
+# model_ml_glaucoma = r'D:/EyeAlertModeloAPI/glaucoma_model.pkl'
+model_ml_glaucoma = os.path.join(os.path.dirname(__file__), 'glaucoma_model.pkl')
+
 
 with open(model_ml_glaucoma, 'rb') as file:
     model_training = pickle.load(file)
