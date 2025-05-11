@@ -61,7 +61,7 @@ def addEvaluationUser():
 
 if __name__=='__main__':
     app.run(
-        host="0.0.0.0", #PUERTO PARA ACCEDER DESDE FLUTTER
-        debug=True,#Al realizar cambios, la app se reinicia
-        port=4000 #PUERTO A USAR, POR DEFECTO ES 5000
+        host="0.0.0.0", 
+        debug=True,
+        port=4000 
     ) 
