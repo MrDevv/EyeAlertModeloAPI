@@ -52,8 +52,8 @@ def addEvaluationUser():
     start_time_dt = datetime.fromtimestamp(start_time, tz)
     end_time_dt = datetime.fromtimestamp(end_time, tz)
 
-    start_time_str = start_time_dt.fromtimestamp(start_time).strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
-    end_time_str = end_time_dt.fromtimestamp(end_time).strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
+    start_time_str = start_time_dt.strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
+    end_time_str = end_time_dt.strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
 
     fmt = '%Y-%m-%d %H:%M:%S.%f'
 
