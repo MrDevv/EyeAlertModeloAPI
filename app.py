@@ -2,10 +2,13 @@ import pickle
 import os
 import pandas as pd
 import time
+import pytz
+
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 from datetime import datetime
 
+tz = pytz.timezone('America/Lima')
 
 
 # model_ml_glaucoma = r'D:/EyeAlertModeloAPI/glaucoma_model.pkl'
