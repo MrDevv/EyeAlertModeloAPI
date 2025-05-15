@@ -4,6 +4,8 @@ import pandas as pd
 import time
 from flask import Flask, jsonify, request
 from flask_cors import CORS
+from datetime import datetime
+
 
 
 # model_ml_glaucoma = r'D:/EyeAlertModeloAPI/glaucoma_model.pkl'
@@ -42,7 +44,21 @@ def addEvaluationUser():
     result_evaluation_model = model_training.predict(params)
     end_time = time.time()
 
-    prediction_time = round((end_time - start_time) * 1000, 2)
+
+    # prediction_time = round((end_time - start_time) * 1000, 2)
+
+    start_time_str = datetime.fromtimestamp(start_time).strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
+    end_time_str = datetime.fromtimestamp(end_time).strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
+
+    fmt = '%Y-%m-%d %H:%M:%S.%f'
+
+    start_dt = datetime.strptime(start_time_str, fmt)
+    end_dt = datetime.strptime(end_time_str, fmt)
+
+    diff_ms_from_str = round((end_dt - start_dt).total_seconds() * 1000, 2)
+
+
+    print(end_time - start_time)
 
 
     if(result_evaluation_model[0] == 0):
@@ -51,12 +67,14 @@ def addEvaluationUser():
         mensaje = "alto riesgo"
 
     print("resultado del modelo: ", result_evaluation_model[0])
-    print("Tiempo de predicción:", prediction_time, "ms")
+    print("Tiempo de predicción:", diff_ms_from_str, "ms")
     return jsonify({
             'status': 200,
             'result_evaluation':str(result_evaluation_model[0]), 
             "message": mensaje,
-            'prediction_time_ms': prediction_time 
+            'prediction_time_ms': diff_ms_from_str,
+            'start_time': start_time_str,
+            'end_time': end_time_str
             })
 
 
