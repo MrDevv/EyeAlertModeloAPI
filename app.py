@@ -3,7 +3,6 @@ import os
 import pandas as pd
 import time
 import pytz
-
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 from datetime import datetime
@@ -50,8 +49,11 @@ def addEvaluationUser():
 
     # prediction_time = round((end_time - start_time) * 1000, 2)
 
-    start_time_str = datetime.fromtimestamp(start_time).strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
-    end_time_str = datetime.fromtimestamp(end_time).strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
+    start_time_dt = datetime.fromtimestamp(start_time, tz)
+    end_time_dt = datetime.fromtimestamp(end_time, tz)
+
+    start_time_str = start_time_dt.fromtimestamp(start_time).strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
+    end_time_str = end_time_dt.fromtimestamp(end_time).strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
 
     fmt = '%Y-%m-%d %H:%M:%S.%f'
 
