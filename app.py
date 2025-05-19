@@ -11,7 +11,8 @@ tz = pytz.timezone('America/Lima')
 
 
 # model_ml_glaucoma = r'D:/EyeAlertModeloAPI/glaucoma_model.pkl'
-model_ml_glaucoma = os.path.join(os.path.dirname(__file__), 'glaucoma_model.pkl')
+# model_ml_glaucoma = os.path.join(os.path.dirname(__file__), 'glaucoma_model.pkl')
+model_ml_glaucoma = os.path.join(os.path.dirname(__file__), 'glaucoma_model_dos.pkl')
 
 
 with open(model_ml_glaucoma, 'rb') as file:
